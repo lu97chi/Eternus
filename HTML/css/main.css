@@ -255,6 +255,7 @@ img {
 :root {
   --font-primary: "Nunito Sans", sans-serif;
   --font-secondary: "Butler", serif;
+  --font-tertiary: "Passions Conflict", cursive;
   /* Paragraph */
   --paragraph-font-family: var(--font-primary);
   --paragraph-min-font-size: 16;
@@ -12147,4 +12148,15 @@ blockquote svg {
 }
 .widget_text .textwidget > *:last-child {
   margin-bottom: 0;
+}
+
+/*!========================================================================
+ * 163. Custom changes
+ * ======================================================================!*/
+ .passions-conflict-regular {
+  font-family: var(--font-tertiary);
+  font-weight: 400;
+  font-style: normal;
+  float: right;
+  font-size: x-large;
 }
