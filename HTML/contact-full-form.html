@@ -20,6 +20,8 @@
     <link rel="stylesheet" type="text/css" href="css/vendor.css" />
     <!-- Template main styles-->
     <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <!-- Custom styles-->
+    <link rel="stylesheet" type="text/css" href="css/custom-styles.css" />
     <!-- Favicons & App Icons -->
     <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png" />
     <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png" />
@@ -446,79 +448,177 @@
                             data-arts-os-animation-name="animatedJump">
                             <div class="row justify-content-center">
                                 <div class="col-12 col-lg-8">
-                                    <form class="form js-form-ajax bg-dark-3 py-small px-gutters text-center"
-                                        action="mail.php" method="POST" novalidate="novalidate"
-                                        data-arts-component-name="FormAJAX"
-                                        data-message-success="Thanks for your message! We will reply you as soon as possible."
-                                        data-message-error="Something went wrong :( Please contact me directly at &lt;a href='mailto:asli@example.com'&gt;asli@example.com&lt;/a&gt;"
-                                        data-arts-color-theme="dark">
-                                        <!-- header -->
-                                        <div class="row form__row">
-                                            <div class="col form__col">
-                                                <h2 class="h4 mt-0 color-accent">Send Message</h2>
-                                            </div>
+                                  <form id="multiStepForm" class="form js-form-ajax bg-dark-3 py-small px-gutters text-left" action="mail.php"
+                                  method="POST" novalidate="novalidate" data-arts-component-name="FormAJAX"
+                                  data-message-success="Thanks for your message! We will reply to you as soon as possible."
+                                  data-message-error="Something went wrong :( Please contact me directly at &lt;a href='mailto:dimitri@gmail.com'&gt;dimitri@gmail.com&lt;/a&gt;"
+                                  data-arts-color-theme="dark">
+                        
+                                  <!-- Form Container -->
+                                  <div class="form-container">
+                                    <!-- Step 1 -->
+                                    <div class="form-step" id="step-1">
+                                      <div class="row form__row">
+                                        <div class="col form__col">
+                                          <h3 class="h6 mt-0 color-accent">What kind of wedding are you looking for?</h3>
+                                          <p class="text-muted small">Choose the type of wedding you are planning:</p>
                                         </div>
-                                        <!-- - header -->
-                                        <div class="row form__row">
-                                            <!-- input #1 -->
-                                            <div class="col-12 col-lg-6 form__col">
-                                                <label class="input-float">
-                                                    <input class="input-float__input" type="text" name="visitor_name"
-                                                        required="required"
-                                                        data-pristine-required-message="Please enter your name" /><span
-                                                        class="input-float__label">Your Name</span>
-                                                </label>
-                                            </div>
-                                            <!-- - input #1 -->
-                                            <!-- input #2 -->
-                                            <div class="col-12 col-lg-6 form__col">
-                                                <label class="input-float">
-                                                    <input class="input-float__input" type="email" name="visitor_email"
-                                                        required="required"
-                                                        data-pristine-email-message="Please enter a correct e-mail"
-                                                        data-pristine-required-message="Please enter your e-mail" /><span
-                                                        class="input-float__label">Your E-mail</span>
-                                                </label>
-                                            </div>
-                                            <!-- - input #2 -->
+                                      </div>
+                                      <div class="row form__row">
+                                        <div class="col form__col">
+                                          <label class="input-checkbox input-float">
+                                            <input class="input-checkbox__checkbox" type="radio" name="wedding_type" value="Beach Wedding" />
+                                            <span class="input-checkbox__label">Beach Wedding</span>
+                                          </label>
+                                          <label class="input-checkbox input-float">
+                                            <input class="input-checkbox__checkbox" type="radio" name="wedding_type" value="Garden Wedding" />
+                                            <span class="input-checkbox__label">Garden Wedding</span>
+                                          </label>
+                                          <label class="input-checkbox input-float">
+                                            <input class="input-checkbox__checkbox" type="radio" name="wedding_type" value="Destination Wedding" />
+                                            <span class="input-checkbox__label">Destination Wedding</span>
+                                          </label>
+                                          <label class="input-checkbox input-float">
+                                            <input class="input-checkbox__checkbox" type="radio" name="wedding_type" value="Traditional Wedding" />
+                                            <span class="input-checkbox__label">Traditional Wedding</span>
+                                          </label>
                                         </div>
-                                        <!-- input #3 -->
-                                        <div class="row form__row">
-                                            <div class="col form__col">
-                                                <label class="input-float">
-                                                    <textarea class="input-float__input input-float__input_textarea"
-                                                        name="visitor_msg"></textarea><span
-                                                        class="input-float__label">Your Message</span>
-                                                </label>
-                                            </div>
+                                      </div>
+                                      <div class="row form__row">
+                                        <div class="col form__col text-center">
+                                          <button class="button button-circle ui-element" onclick="validateAndNextStep(1)" type="button"
+                                            data-arts-cursor-follower-target="{color: 'var(--color-accent-dark-theme)', scale: 'current', magnetic: 0.25}">
+                                            <span class="button__label button__label-normal"><span class="button__title">Next</span></span>
+                                            <span class="button__label button__label-hover"><span class="button__title">Next</span></span>
+                                          </button>
                                         </div>
-                                        <!-- - input #3 -->
-                                        <div class="row form__row">
-                                            <div class="col form__col text-start">
-                                                <label class="input-checkbox input-float">
-                                                    <input class="input-checkbox__checkbox" type="checkbox"
-                                                        name="terms_agreed" required="required"
-                                                        data-pristine-required-message="Your agreement with terms is required." /><span
-                                                        class="input-checkbox__label">I agree to all <a href="#">Terms
-                                                            and Conditions</a></span>
-                                                </label>
-                                            </div>
+                                      </div>
+                                      <p id="error-step-1" class="text-danger small mt-2 d-none">Please select at least one option to continue.</p>
+                                    </div>
+                        
+                                    <!-- Step 2 -->
+                                    <div class="form-step" id="step-2">
+                                      <div class="row form__row">
+                                        <div class="col form__col">
+                                          <h3 class="h6 mt-0 color-accent">What is your budget for the wedding?</h3>
+                                          <p class="text-muted small">Choose a budget range that fits your plans:</p>
                                         </div>
-                                        <!-- submit -->
-                                        <div class="row form__row">
-                                            <div class="col form__col form__col_submit text-center">
-                                                <button class="button button_icon button-circle ui-element"
-                                                    type="submit"
-                                                    data-arts-cursor-follower-target="{color: 'var(--color-accent-dark-theme)', scale: 'current', magnetic: 0.25}"><span
-                                                        class="button__label button__label-normal"><span
-                                                            class="button__title">Submit</span></span><span
-                                                        class="button__label button__label-hover"><span
-                                                            class="button__title">Submit</span></span>
-                                                </button>
-                                            </div>
+                                      </div>
+                                      <div class="row form__row">
+                                        <div class="col form__col">
+                                          <label class="input-checkbox input-float">
+                                            <input class="input-checkbox__checkbox" type="radio" name="budget" value="Under $5,000" />
+                                            <span class="input-checkbox__label">Under $5,000</span>
+                                          </label>
+                                          <label class="input-checkbox input-float">
+                                            <input class="input-checkbox__checkbox" type="radio" name="budget" value="$5,000 - $10,000" />
+                                            <span class="input-checkbox__label">$5,000 - $10,000</span>
+                                          </label>
+                                          <label class="input-checkbox input-float">
+                                            <input class="input-checkbox__checkbox" type="radio" name="budget" value="$10,000 - $20,000" />
+                                            <span class="input-checkbox__label">$10,000 - $20,000</span>
+                                          </label>
+                                          <label class="input-checkbox input-float">
+                                            <input class="input-checkbox__checkbox" type="radio" name="budget" value="Above $20,000" />
+                                            <span class="input-checkbox__label">Above $20,000</span>
+                                          </label>
                                         </div>
-                                        <!-- - submit -->
-                                    </form>
+                                      </div>
+                                      <div class="row form__row">
+                                        <div class="col form__col text-center">
+                                          <button class="button button-circle ui-element" onclick="validateAndNextStep(2)" type="button"
+                                            data-arts-cursor-follower-target="{color: 'var(--color-accent-dark-theme)', scale: 'current', magnetic: 0.25}">
+                                            <span class="button__label button__label-normal"><span class="button__title">Next</span></span>
+                                            <span class="button__label button__label-hover"><span class="button__title">Next</span></span>
+                                          </button>
+                                        </div>
+                                      </div>
+                                      <p id="error-step-2" class="text-danger small mt-2 d-none">Please select at least one option to continue.</p>
+                                    </div>
+                        
+                                    <!-- Step 3 -->
+                                    <div class="form-step" id="step-3">
+                                      <div class="row form__row">
+                                        <div class="col form__col">
+                                          <h3 class="h6 mt-0 color-accent">Where did you hear from us?</h3>
+                                          <p class="text-muted small">Let us know how you found us:</p>
+                                        </div>
+                                      </div>
+                                      <div class="row form__row">
+                                        <div class="col form__col">
+                                          <label class="input-checkbox input-float">
+                                            <input class="input-checkbox__checkbox" type="radio" name="referral_source" value="Instagram" />
+                                            <span class="input-checkbox__label">Instagram</span>
+                                          </label>
+                                          <label class="input-checkbox input-float">
+                                            <input class="input-checkbox__checkbox" type="radio" name="referral_source" value="Facebook" />
+                                            <span class="input-checkbox__label">Facebook</span>
+                                          </label>
+                                          <label class="input-checkbox input-float">
+                                            <input class="input-checkbox__checkbox" type="radio" name="referral_source" value="Google Search" />
+                                            <span class="input-checkbox__label">Google Search</span>
+                                          </label>
+                                          <label class="input-checkbox input-float">
+                                            <input class="input-checkbox__checkbox" type="radio" name="referral_source" value="Friend Recommendation" />
+                                            <span class="input-checkbox__label">Friend Recommendation</span>
+                                          </label>
+                                        </div>
+                                      </div>
+                                      <div class="row form__row">
+                                        <div class="col form__col text-center">
+                                          <button class="button button-circle ui-element" onclick="validateAndNextStep(3)" type="button"
+                                            data-arts-cursor-follower-target="{color: 'var(--color-accent-dark-theme)', scale: 'current', magnetic: 0.25}">
+                                            <span class="button__label button__label-normal"><span class="button__title">Next</span></span>
+                                            <span class="button__label button__label-hover"><span class="button__title">Next</span></span>
+                                          </button>
+                                        </div>
+                                      </div>
+                                      <p id="error-step-3" class="text-danger small mt-2 d-none">Please select at least one option to continue.</p>
+                                    </div>
+                        
+                                    <!-- Step 4 -->
+                                    <div class="form-step" id="step-4">
+                                      <div class="row form__row">
+                                        <div class="col form__col">
+                                          <h3 class="h6 mt-0 color-accent">Send Message</h3>
+                                        </div>
+                                      </div>
+                                      <div class="row form__row">
+                                        <div class="col-12 col-lg-6 form__col">
+                                          <label class="input-float">
+                                            <input class="input-float__input" type="text" name="visitor_name" required="required"
+                                              data-pristine-required-message="Please enter your name" />
+                                            <span class="input-float__label">Your Name</span>
+                                          </label>
+                                        </div>
+                                        <div class="col-12 col-lg-6 form__col">
+                                          <label class="input-float">
+                                            <input class="input-float__input" type="email" name="visitor_email" required="required"
+                                              data-pristine-required-message="Please enter your email" />
+                                            <span class="input-float__label">Your Email</span>
+                                          </label>
+                                        </div>
+                                      </div>
+                                      <div class="row form__row">
+                                        <div class="col form__col">
+                                          <label class="input-float">
+                                            <textarea class="input-float__input input-float__input_textarea" name="visitor_msg"></textarea>
+                                            <span class="input-float__label">Your Message</span>
+                                          </label>
+                                        </div>
+                                      </div>
+                                      <div class="row form__row">
+                                        <div class="col form__col text-center">
+                                          <button class="button button-circle ui-element" type="submit"
+                                            data-arts-cursor-follower-target="{color: 'var(--color-accent-dark-theme)', scale: 'current', magnetic: 0.25}">
+                                            <span class="button__label button__label-normal"><span class="button__title">Submit</span></span>
+                                            <span class="button__label button__label-hover"><span class="button__title">Submit</span></span>
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </form>
                                 </div>
                             </div>
                         </div>
@@ -624,6 +724,7 @@
     <script src="js/vendor.js"></script>
     <script src="js/framework.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/custom/formSteper.js"></script>
     <!-- - TEMPLATE SCRIPTS -->
 </body>
 

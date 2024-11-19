@@ -11508,7 +11508,7 @@ blockquote svg {
 
 .input-float__input_textarea {
   resize: none;
-  height: 200px;
+  height: 150px;
 }
 
 .input-float__error, span.wpcf7-not-valid-tip {
