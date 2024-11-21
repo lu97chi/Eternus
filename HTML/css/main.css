@@ -7358,8 +7358,8 @@ a.logo:hover {
 
 .slider-testimonials__dot {
   cursor: pointer;
-  --size-min: 60;
-  --size-max: 80;
+  --size-min: 140;
+  --size-max: 200;
   position: relative;
   width: calc(1 * var(--size-min) * 1px);
   height: calc(1 * var(--size-min) * 1px);
@@ -7367,6 +7367,7 @@ a.logo:hover {
   border-radius: 100%;
   margin: 0.5em;
   background-color: #000;
+  transition: opacity 1s ease;
 }
 @media screen and (min-width: 360px) {
   .slider-testimonials__dot {
@@ -7410,6 +7411,9 @@ a.logo:hover {
 .slider-testimonials__dot:not([current]) .slider-testimonials__dot-image {
   opacity: 0.5;
 }
+.slider-testimonials__dot:not([current]){
+  display: none;
+}
 .slider-testimonials__dot:not([current]):hover .slider-testimonials__dot-image {
   opacity: 1;
 }
@@ -7424,6 +7428,7 @@ a.logo:hover {
   justify-content: center;
   margin-left: -0.5em;
   margin-right: -0.5em;
+  position: relative;
 }
 
 .slider-testimonials__arrow {
@@ -12159,4 +12164,73 @@ blockquote svg {
   font-style: normal;
   float: right;
   font-size: x-large;
+}
+
+.grid_gallery_container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(11, 320px); /* 11 rows, each 32px tall */
+  grid-template-areas:
+    "A"
+    "B"
+    "C"
+    "D"
+    "E"
+    "G"
+    "H"
+    "I"
+    "J"
+    "K"
+    "L";
+}
+
+/* Tablet layout */
+@media screen and (min-width: 600px) {
+  .grid_gallery_container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, 320px); /* 6 rows, each 32px tall */
+    grid-template-areas:
+      "A A"
+      "B C"
+      "D E"
+      "G H"
+      "I J"
+      "K L";
+  }
+}
+
+/* Desktop layout */
+@media screen and (min-width: 1024px) {
+  .grid_gallery_container {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 320px); /* 6 rows, each 32px tall */
+    grid-template-areas:
+      "A B B"
+      "A C D"
+      "A F G"
+      "A I J"
+      "K L L";
+  }
+}
+
+/* Assign grid areas */
+.A { grid-area: A; }
+.B { grid-area: B; }
+.C { grid-area: C; }
+.D { grid-area: D; }
+.E { grid-area: E; }
+.F { grid-area: F; }
+.G { grid-area: G; }
+.H { grid-area: H; }
+.I { grid-area: I; }
+.J { grid-area: J; }
+.K { grid-area: K; }
+.L { grid-area: L; }
+
+.hide_circle_animation svg{
+  display: none;
+}
+
+.hide_circle_animation u{
+  text-decoration: underline;
 }
