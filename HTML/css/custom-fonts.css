@@ -13,3 +13,11 @@
   font-style: normal;
   font-display: 'swap';
 }
+
+@font-face {
+  font-family: 'ItalianoRegular';
+  src: url('../fonts/Italianno-Regular.ttf') format('ttf');
+  font-weight: 300;
+  font-style: normal;
+  font-display: 'swap';
+}

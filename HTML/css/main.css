@@ -255,7 +255,7 @@ img {
 :root {
   --font-primary: "Nunito Sans", sans-serif;
   --font-secondary: "Butler", serif;
-  --font-tertiary: "Passions Conflict", cursive;
+  --font-tertiary: "ItalianoRegular", cursive;
   /* Paragraph */
   --paragraph-font-family: var(--font-primary);
   --paragraph-min-font-size: 16;
@@ -2419,12 +2419,33 @@ a.pointer-events-links-none {
   margin-bottom: 1em;
 }
 
-div.wpcf7-validation-errors, div.wpcf7-acceptance-missing {
-  border-color: red;
-  padding: 15px;
-  margin: 1.5em 0 0;
-  display: none !important;
+/* Base styles for each form step */
+.form-step {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(100%); /* Start off-screen to the right */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Removed visibility */
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
 }
+
+/* Visible state for the active step */
+.form-step.active {
+  opacity: 1;
+  visibility: visible; /* Set visibility to visible immediately */
+  transform: translateX(0); /* Slide into view */
+  position: relative;
+}
+
+/* Animation for sliding out to the left */
+.form-step.slide-out {
+  opacity: 0;
+  transform: translateX(-100%); /* Slide off-screen to the left */
+  /* Removed visibility: hidden; */
+}
+
 
 @media only screen and (max-width: 992px) {
   .form__col_submit {
@@ -3332,6 +3353,7 @@ div.wpcf7-validation-errors, div.wpcf7-acceptance-missing {
      object-fit: cover;
   width: 100%;
   height: 100%;
+  object-position: center center;
 }
 
 .of-contain {
@@ -11276,10 +11298,10 @@ blockquote svg {
  * ======================================================================!*/
 .button-circle {
   position: relative;
-  --button-paddings-min: 20;
-  --button-paddings-max: 30;
-  --button-size-min: 80;
-  --button-size-max: 160;
+  --button-paddings-min: 10;
+  --button-paddings-max: 15;
+  --button-size-min: 40;
+  --button-size-max: 80;
   --button-paddings: calc(1 * var(--button-paddings-min) * 1px);
   --button-size: calc(1 * var(--button-size-min) * 1px);
   padding-top: 0;
@@ -11513,7 +11535,7 @@ blockquote svg {
 
 .input-float__input_textarea {
   resize: none;
-  height: 150px;
+  height: 100px;
 }
 
 .input-float__error, span.wpcf7-not-valid-tip {

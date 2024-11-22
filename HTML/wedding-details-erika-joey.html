@@ -549,10 +549,9 @@
         <section>
           <div class="grid_gallery_container" data-arts-component-name="PSWP" data-arts-component-options="{}">
             <div class="item A">
-              <!-- <img class="lazy of-cover" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='100%25'%20height='100%25'%3E%3C/svg%3E" decoding="async" data-src="img/assets/wedingDetails/Dani&Mau/Hero.jpg" alt=""/> -->
               <div class="h-100">
                 <a class="h-100 d-block hover-zoom parallax js-parallax text-lg-center js-parallax"
-                  data-caption="Image Caption #3" data-pswp-width="1024" data-pswp-height="1536"
+                  data-caption="Image Caption #3" data-pswp-width="1024" data-pswp-height="1024"
                   href="img/assets/wedingDetails/Erika&Joey/details-1.jpg" target="_blank"
                   data-arts-cursor-follower-target="{hideNative: true, scale: '80px', className: 'material-icons add', color: '#000', background: 'var(--color-accent-dark-theme)'}"
                   data-arts-os-animation="true" data-arts-component-name="Parallax"
@@ -563,8 +562,8 @@
                         <div class="w-100 h-100 js-animated-mask-inner">
                           <img class="lazy of-cover js-parallax__inner"
                             src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='100%25'%20height='100%25'%3E%3C/svg%3E"
-                            decoding="async" data-src="img/assets/wedingDetails/Erika&Joey/details-1.jpg" width="1024"
-                            height="1536" alt="" />
+                            decoding="async" data-src="img/assets/wedingDetails/Erika&Joey/details-1.jpg" width="100"
+                            height="100" alt="" />
                         </div>
                       </div>
                     </div>
@@ -876,6 +875,55 @@
         <!-- - section CREDITS -->
         <!-- - PAGE CONTENT -->
         <!-- PAGE FOOTER -->
+        <footer class="footer borders-auto-opacity-solid" id="page-footer">
+          <div class="footer__area bt-auto">
+            <div class="container-fluid-gutters">
+              <div class="row align-items-center footer__row-pb-small">
+                <div class="col-12 col-md-3 order-md-3 footer__column-pt-small text-md-end text-center">
+                  <section class="widget widget_asli_soc1al">
+                    <ul class="soc1al soc1al_borders-opacity-no-cursor">
+                      <li class="soc1al__item"><a class="soc1al__icon fa-fw fab fa-facebook-f"
+                          href="https://www.facebook.com/people/Dimitri-Fafutis/100095292498759/" target="_blank"
+                          aria-label="Facebook link"
+                          data-arts-cursor-follower-target="{highlight: false, magnetic: 0.33, scale: 'current', hideNative: false}"></a>
+                      </li>
+                      <li class="soc1al__item"><a class="soc1al__icon fa-fw fab fa-instagram"
+                          href="https://www.instagram.com/dimitri.fafutis/" target="_blank" aria-label="Instagram link"
+                          data-arts-cursor-follower-target="{highlight: false, magnetic: 0.33, scale: 'current', hideNative: false}"></a>
+                      </li>
+                      <li class="soc1al__item"><a class="soc1al__icon fa-fw fab fa-tiktok"
+                          href="https://www.tiktok.com/@dimitri.fafutis?lang=en" target="_blank"
+                          aria-label="Tiktok link"
+                          data-arts-cursor-follower-target="{highlight: false, magnetic: 0.33, scale: 'current', hideNative: false}"></a>
+                      </li>
+                      <li class="soc1al__item"><a class="soc1al__icon fa-fw fab fa-youtube"
+                          href="https://www.youtube.com/channel/UCYeuJ85lPl2URs6VTBW33Ng" target="_blank"
+                          aria-label="Youtube link"
+                          data-arts-cursor-follower-target="{highlight: false, magnetic: 0.33, scale: 'current', hideNative: false}"></a>
+                      </li>
+                    </ul>
+                  </section>
+                </div>
+                <div class="col-12 col-md-3 order-md-1 footer__column-pt-small text-md-start text-center">
+                  <section class="widget widget_asli_inline_links">
+                    <div>
+                      <ul class="inline-links">
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                      </ul>
+                    </div>
+                  </section>
+                </div>
+                <div class="col-12 col-md-6 order-md-2 footer__column-pt-small text-center">
+                  <section class="widget widget_text">
+                    <div class="textwidget">© 2024 EtherML. <a href="https://artemsemkin.com/" target="_blank"></a>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
         <!-- - PAGE FOOTER -->
       </div>
     </main>
@@ -935,6 +983,24 @@
   <script src="js/vendor.js"></script>
   <script src="js/framework.js"></script>
   <script src="js/app.js"></script>
+  <style>
+    /* Desktop layout */
+    @media screen and (min-width: 1024px) {
+      .grid_gallery_container {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(8, 320px); /* 6 rows, each 32px tall */
+        grid-template-areas:
+          "A B B"
+          "A C C"
+          "A C C"
+          "A D E"
+          "F F G"
+          "H H H"
+          "I J K"
+          "L L L"
+      }
+    }
+  </style>
   <!-- - TEMPLATE SCRIPTS -->
 </body>
 
