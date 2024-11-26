@@ -178,10 +178,11 @@ form.addEventListener("submit", async (event) => {
   } = formObject;
   console.log(formObject, "this value");
   try {
-    const response = await fetch("/api/send", {
-      method: "POST",
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
         to,
@@ -199,15 +200,13 @@ form.addEventListener("submit", async (event) => {
     });
 
     if (response.ok) {
-      alert("Email sent successfully!");
+      const data = await response.json();
+      res.status(200).json({ success: 'Email sent', data });
     } else {
-      console.log(response, 'this is the response');
       const error = await response.json();
-      console.log(error);
-      alert("Failed to send email: " + error.error);
+      res.status(response.status).json({ error: error.message });
     }
   } catch (err) {
-    console.log(err);
-    alert("An error occurred: " + err.message);
+    res.status(500).json({ error: 'Failed to send email' });
   }
 });
