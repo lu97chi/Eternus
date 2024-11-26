@@ -201,12 +201,15 @@ form.addEventListener("submit", async (event) => {
 
     if (response.ok) {
       const data = await response.json();
-      res.status(200).json({ success: 'Email sent', data });
+      console.log(data, "this data");
+      // res.status(200).json({ success: 'Email sent', data });
     } else {
       const error = await response.json();
-      res.status(response.status).json({ error: error.message });
+      console.log(error, "this error");
+      // res.status(response.status).json({ error: error.message });
     }
   } catch (err) {
-    res.status(500).json({ error: 'Failed to send email' });
+    console.log(err, "this error");
+    // res.status(500).json({ error: 'Failed to send email' });
   }
 });
