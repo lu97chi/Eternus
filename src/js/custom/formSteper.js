@@ -209,7 +209,7 @@ form.addEventListener("submit", async (event) => {
       // res.status(response.status).json({ error: error.message });
     }
   } catch (err) {
-    console.log(err, "this error");
+    console.log(err, "this erro2r");
     // res.status(500).json({ error: 'Failed to send email' });
   }
 });
