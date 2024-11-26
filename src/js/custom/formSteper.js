@@ -201,6 +201,7 @@ form.addEventListener("submit", async (event) => {
     if (response.ok) {
       alert("Email sent successfully!");
     } else {
+      console.log(response, 'this is the response');
       const error = await response.json();
       console.log(error);
       alert("Failed to send email: " + error.error);
