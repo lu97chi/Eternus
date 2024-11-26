@@ -1,5 +1,6 @@
 let currentStep = 0; // Initialize to the first step (step-0)
 const totalSteps = 6; // Total number of steps (step-0 to step-6)
+const form = document.getElementById("multiStepForm");
 
 /**
  * Moves the form to the next step with animations.
@@ -10,39 +11,45 @@ function nextStep() {
 
   if (nextElement) {
     // Add 'slide-out' class to animate out
-    currentElement.classList.add('slide-out');
+    currentElement.classList.add("slide-out");
 
     // Force reflow to ensure transition starts
     void currentElement.offsetWidth;
 
     // Define the event handler for transition end
-    function handleTransitionEnd(event) {
-        // Hide the current step after transition
-        currentElement.style.visibility = 'hidden';
+    function handleTransitionEnd() {
+      // Hide the current step after transition
+      currentElement.style.visibility = "hidden";
 
-        // Remove 'active' and 'slide-out' classes
-        currentElement.classList.remove('active', 'slide-out');
+      // Remove 'active' and 'slide-out' classes
+      currentElement.classList.remove("active", "slide-out");
 
-        // Remove the event listener to prevent memory leaks
-        currentElement.removeEventListener('transitionend', handleTransitionEnd);
+      // Remove the event listener to prevent memory leaks
+      currentElement.removeEventListener("transitionend", handleTransitionEnd);
 
-        // Prepare and show the next step
-        nextElement.style.visibility = 'visible';
-        nextElement.classList.add('active');
+      // Prepare and show the next step
+      nextElement.style.visibility = "visible";
+      nextElement.classList.add("active");
 
-        // Update the current step counter
-        currentStep++;
+      // Update the current step counter
+      currentStep++;
 
-        // Adjust the form container height
-        updateContainerHeight();
+      // Adjust the form container height
+      updateContainerHeight();
 
-        // If navigating to the Review step, populate the review information
-        if (currentStep === totalSteps) {
-          populateReviewInfo();
-        }
+      // Focus on the input field of the new step
+      const input = nextElement.querySelector("input, select, textarea");
+      if (input) {
+        input.focus();
+      }
+
+      // If navigating to the Review step, populate the review information
+      if (currentStep === totalSteps) {
+        populateReviewInfo();
+      }
     }
 
-    handleTransitionEnd()
+    handleTransitionEnd();
   }
 }
 
@@ -56,28 +63,32 @@ function validateAndNextStep(step) {
   let isValid = true;
 
   // Select all required inputs within the current step
-  const requiredInputs = stepElement.querySelectorAll('[required]');
+  const requiredInputs = stepElement.querySelectorAll("[required]");
 
   if (requiredInputs.length > 0) {
     // Check for radio button validations
-    const radioInputs = stepElement.querySelectorAll('input[type="radio"][required]');
+    const radioInputs = stepElement.querySelectorAll(
+      'input[type="radio"][required]'
+    );
     if (radioInputs.length > 0) {
       // Validate that at least one radio button is selected
-      isValid = Array.from(radioInputs).some(input => input.checked);
+      isValid = Array.from(radioInputs).some((input) => input.checked);
     } else {
       // Validate text inputs and textareas to ensure they are not empty
-      isValid = Array.from(requiredInputs).every(input => input.value.trim() !== '');
+      isValid = Array.from(requiredInputs).every(
+        (input) => input.value.trim() !== ""
+      );
     }
   }
 
   if (isValid) {
     if (errorElement) {
-      errorElement.classList.add('d-none'); // Hide error message
+      errorElement.classList.add("d-none"); // Hide error message
     }
     nextStep(); // Proceed to the next step
   } else {
     if (errorElement) {
-      errorElement.classList.remove('d-none'); // Show error message
+      errorElement.classList.remove("d-none"); // Show error message
     }
   }
 }
@@ -86,13 +97,13 @@ function validateAndNextStep(step) {
  * Adjusts the height of the form container to match the active step.
  */
 function updateContainerHeight() {
-  const container = document.querySelector('.form-container');
-  const activeStep = document.querySelector('.form-step.active');
+  const container = document.querySelector(".form-container");
+  const activeStep = document.querySelector(".form-step.active");
   if (activeStep) {
     // Temporarily set height to 'auto' to calculate the required height
-    container.style.height = 'auto';
+    container.style.height = "auto";
     const height = activeStep.offsetHeight;
-    container.style.height = height + 'px';
+    container.style.height = height + "px";
   }
 }
 
@@ -100,15 +111,26 @@ function updateContainerHeight() {
  * Populates the Review Information step with user inputs.
  */
 function populateReviewInfo() {
-  const reviewContainer = document.getElementById('review-info');
+  const reviewContainer = document.getElementById("review-info");
 
   // Collect user inputs
-  const brideName = document.querySelector('input[name="bride_name"]').value.trim();
-  const groomName = document.querySelector('input[name="groom_name"]').value.trim();
-  const weddingType = document.querySelector('input[name="wedding_type"]:checked')?.value || 'N/A';
-  const budget = document.querySelector('input[name="budget"]:checked')?.value || 'N/A';
-  const contactMethod = document.querySelector('input[name="contact_method"]:checked')?.value || 'N/A';
-  const additionalInfo = document.querySelector('textarea[name="additional_info"]').value.trim() || 'N/A';
+  const brideName = document
+    .querySelector('input[name="bride_name"]')
+    .value.trim();
+  const groomName = document
+    .querySelector('input[name="groom_name"]')
+    .value.trim();
+  const weddingType =
+    document.querySelector('input[name="wedding_type"]:checked')?.value ||
+    "N/A";
+  const budget =
+    document.querySelector('input[name="budget"]:checked')?.value || "N/A";
+  const contactMethod =
+    document.querySelector('input[name="contact_method"]:checked')?.value ||
+    "N/A";
+  const additionalInfo =
+    document.querySelector('textarea[name="additional_info"]').value.trim() ||
+    "N/A";
 
   // Populate the review container with the collected information
   reviewContainer.innerHTML = `
@@ -125,11 +147,63 @@ function populateReviewInfo() {
 /**
  * Initializes the form on page load.
  */
-document.addEventListener('DOMContentLoaded', () => {
-  const firstStep = document.getElementById('step-0');
+document.addEventListener("DOMContentLoaded", () => {
+  const firstStep = document.getElementById("step-0");
   if (firstStep) {
-    firstStep.classList.add('active'); // Show the first step
-    firstStep.style.visibility = 'visible'; // Ensure visibility
+    firstStep.classList.add("active"); // Show the first step
+    firstStep.style.visibility = "visible"; // Ensure visibility
     updateContainerHeight(); // Adjust container height accordingly
+  }
+});
+
+form.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    validateAndNextStep(currentStep);
+  }
+});
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  // Get the values from the form object
+  const formData = new FormData(form);
+  const formObject = Object.fromEntries(formData.entries());
+  const {
+    email: to,
+    bride_name,
+    groom_name,
+    budget,
+    weeding_type,
+    additional_info,
+  } = formObject;
+  try {
+    const response = await fetch("/api/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        to,
+        subject: "Wedding Planner Form Submission",
+        html: `
+        <h1>Wedding Planner Form Submission</h1>
+        New form submission from ${bride_name} and ${groom_name}:
+        <p>Bride name ${bride_name}</p>
+        <p>Groom name ${groom_name}</p>
+        <p>Budget ${budget}</p>
+        <p>Wedding type ${weeding_type}</p>
+        <p>Additional info ${additional_info}</p>
+        `, // Email body as HTML
+      }),
+    });
+
+    if (response.ok) {
+      alert("Email sent successfully!");
+    } else {
+      const error = await response.json();
+      alert("Failed to send email: " + error.error);
+    }
+  } catch (err) {
+    alert("An error occurred: " + err.message);
   }
 });
