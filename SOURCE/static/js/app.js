@@ -494,10 +494,10 @@ window.app = {
 			dependencies: [],
 			file: './components/Gmap.js'
 		},
-		'FormAJAX': {
-			dependencies: ['pristine', 'bootstrap-modal'],
-			file: './components/FormAJAX.js'
-		},
+		// 'FormAJAX': {
+		// 	dependencies: ['pristine', 'bootstrap-modal'],
+		// 	file: './components/FormAJAX.js'
+		// },
 		'Grid': {
 			dependencies: ['isotope'],
 			file: './components/Grid.js'
