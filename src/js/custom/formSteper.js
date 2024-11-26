@@ -176,7 +176,7 @@ form.addEventListener("submit", async (event) => {
     weeding_type,
     additional_info,
   } = formObject;
-  console.log(formObject, 'this value')
+  console.log(formObject, "this value");
   try {
     const response = await fetch("/api/send", {
       method: "POST",
@@ -194,7 +194,7 @@ form.addEventListener("submit", async (event) => {
         <p>Budget ${budget}</p>
         <p>Wedding type ${weeding_type}</p>
         <p>Additional info ${additional_info}</p>
-        `, // Email body as HTML
+        `,
       }),
     });
 
@@ -202,11 +202,11 @@ form.addEventListener("submit", async (event) => {
       alert("Email sent successfully!");
     } else {
       const error = await response.json();
-    console.error(error);
+      console.log(error);
       alert("Failed to send email: " + error.error);
     }
   } catch (err) {
-    console.error(err);
+    console.log(err);
     alert("An error occurred: " + err.message);
   }
 });
