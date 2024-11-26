@@ -177,6 +177,7 @@ form.addEventListener("submit", async (event) => {
     additional_info,
   } = formObject;
   console.log(formObject, "this value");
+  const RESEND_API_KEY = process.env.RESEND_API_KEY;
   try {
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
