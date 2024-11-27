@@ -1,0 +1,8 @@
+{
+    "repository": "https://github.com/lu97chi/Eternus",
+    "license": "MIT",
+    "private": true,
+    "devDependencies": {
+      "@vercel/node": "^2.9.6"
+    }
+  }
