@@ -165,6 +165,7 @@ form.addEventListener("keydown", (event) => {
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
+
   // Get the values from the form object
   const formData = new FormData(form);
   const formObject = Object.fromEntries(formData.entries());
@@ -176,43 +177,30 @@ form.addEventListener("submit", async (event) => {
     weeding_type,
     additional_info,
   } = formObject;
-  console.log(formObject, "this value");
-  const RESEND_API_KEY = process.env.RESEND_API_KEY;
+
   try {
-    const r2 = await fetch('/api/send');
-    console.log(r2, "this r2");
-    const response = await fetch('https://api.resend.com/emails', {
+    // Call the Vercel function
+    const response = await fetch('/api/send', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         to,
-        subject: "Wedding Planner Form Submission",
-        html: `
-        <h1>Wedding Planner Form Submission</h1>
-        New form submission from ${bride_name} and ${groom_name}:
-        <p>Bride name ${bride_name}</p>
-        <p>Groom name ${groom_name}</p>
-        <p>Budget ${budget}</p>
-        <p>Wedding type ${weeding_type}</p>
-        <p>Additional info ${additional_info}</p>
-        `,
+        bride_name,
+        groom_name,
+        budget,
+        weeding_type,
+        additional_info,
       }),
     });
 
     if (response.ok) {
       const data = await response.json();
-      console.log(data, "this data");
-      // res.status(200).json({ success: 'Email sent', data });
+      console.log('Email sent successfully:', data);
     } else {
       const error = await response.json();
-      console.log(error, "this error");
-      // res.status(response.status).json({ error: error.message });
+      console.error('Error sending email:', error);
     }
   } catch (err) {
-    console.log(err, "this erro2r");
-    // res.status(500).json({ error: 'Failed to send email' });
+    console.error('Error connecting to serverless function:', err);
   }
 });
